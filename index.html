@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        body {
+            background-color: #638b96; /* Coffee color */
+            color: #fff;
+            font-family: Arial, sans-serif;
+            animation: fadeIn 1s ease-out; /* Fade-in animation for the body */
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        #resume-container {
+            margin: 50px auto;
+            max-width: 800px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+            border-radius: 10px;
+            animation: slideIn 1s ease-out; /* Slide-in animation for the container */
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            font-size: 24px;
+            color: aqua;
+            animation: colorChange 2s infinite alternate; /* Color change animation for h1 */
+        }
+
+        @keyframes colorChange {
+            from {
+                color: rgb(205, 238, 97);
+            }
+            to {
+                color: rgb(76, 130, 76);
+            }
+        }
+
+        /* Add more animations as needed */
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume</title>
+</head>
+<body>
+    <div id="resume-container">
+        
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Resume data
+            var resumeData = {
+                name: "Shikhar Pratap Singh",
+                title: "Java Developer",
+                email: "cratesium@gmail.com",
+                phone: "+91 90151999",
+                address: "B1-401 Ajnara Homes",
+                linkedin: "https://www.linkedin.com/in/shikhar-pratap-singh-09a9b322a/",
+                github: "https://github.com/cratesium",
+                hackerrank: "https://www.hackerrank.com/profile/csc_2021b0121053",
+                leetcode: "https://leetcode.com/cratesium/",
+                education: [
+                    {
+                        school: "Karl Huber School",
+                        degree: "High School",
+                        cgpa: "CGPA: 86.2",
+                        percentage: "Intermediate Percentage: 71.2%"
+                    },
+                    {
+                        school: "ABES Engineering College",
+                        degree: "B.Tech Computer Science",
+                        cgpa: "CGPA: 7.9"
+                    }
+                ],
+                skills: {
+                    programmingLanguages: ["Java Core", "CPP", "C", "Data Structure and Algorithms", "HTML", "Java Swing", "TypeScript", "Angular"],
+                    toolsPlatforms: ["Git/Github", "MS Excel", "Google Suite", "MS Powerpoint", "VS Code", "Eclipse for Java"],
+                    databases: ["Oracle"]
+                },
+                experience: [
+                    "April 2017 - March 2018, Noida",
+                    "April 2019 - March 2020, Noida",
+                    "October 2021 - September 2025, Ghaziabad"
+                ],
+                projects: [
+                    {
+                        name: "GUI of Chat Application",
+                        description: "An Amazing project created using java swing for chatting",
+                        technologies: ["Java", "Java Swing"]
+                    },
+                    {
+                        name: "College Website",
+                        description: "Created an aesthetically pleasing and intuitive college website that effectively presents the institution’s academic programs, faculty, campus life, and resources.",
+                        technologies: ["HTML", "CSS", "JavaScript"]
+                    },
+                    {
+                        name: "Notepad Clone",
+                        description: "A GUI Based text editor Based on Java Swing",
+                        technologies: ["Java Swing"]
+                    },
+                    {
+                        name: "ABES Solutions",
+                        description: "Abes Solutions aims to address the challenges faced by Indian farmers.",
+                        technologies: ["HTML", "CSS", "React", "JavaScript"]
+                    }
+                ],
+                certifications: [
+                    "Problem Solving (Basic) - HackerRank",
+                    "Problem Solving (Intermediate) - HackerRank",
+                    "Python (Basic) - HackerRank",
+                    "Java 11 - LinkedIn Learning",
+                    "PCAP: Programming Essentials in Python - Cisco Networking Academy & openEDG Python Institute",
+                    "CPA: Programming Essentials in C++ - openEDG C++"
+                ]
+            };
+
+            // Generate HTML for resume
+            var html = `
+                <h1>${resumeData.name}</h1>
+                <h2>${resumeData.title}</h2>
+                <p>Email: <a href="mailto:${resumeData.email}">${resumeData.email}</a> | Phone: ${resumeData.phone}</p>
+                <p>Address: ${resumeData.address}</p>
+                <p><a href="${resumeData.linkedin}">LinkedIn</a> | <a href="${resumeData.github}">GitHub</a> | <a href="${resumeData.hackerrank}">Hackerrank</a> | <a href="${resumeData.leetcode}">LeetCode</a></p>
+                <h2>Education</h2>
+                <ul>
+            `;
+            resumeData.education.forEach(function(edu) {
+                html += `<li>${edu.school} - ${edu.degree} (${edu.cgpa}, ${edu.percentage ? edu.percentage : ''})</li>`;
+            });
+            html += `
+                </ul>
+                <h2>Skills</h2>
+                <h3>Programming Languages</h3>
+                <ul>
+            `;
+            resumeData.skills.programmingLanguages.forEach(function(lang) {
+                html += `<li>${lang}</li>`;
+            });
+            html += `</ul><h3>Tools / Platforms</h3><ul>`;
+            resumeData.skills.toolsPlatforms.forEach(function(tool) {
+                html += `<li>${tool}</li>`;
+            });
+            html += `</ul><h3>Databases</h3><ul>`;
+            resumeData.skills.databases.forEach(function(db) {
+                html += `<li>${db}</li>`;
+            });
+            html += `</ul><h2>Experience</h2><ul>`;
+            resumeData.experience.forEach(function(exp) {
+                html += `<li>${exp}</li>`;
+            });
+            html += `</ul><h2>Projects / Open-Source</h2>`;
+            resumeData.projects.forEach(function(project) {
+                html += `<h3>${project.name}</h3><p>${project.description}</p><p>Technologies: ${project.technologies.join(', ')}</p>`;
+            });
+            html += `<h2>Certifications</h2><ul>`;
+            resumeData.certifications.forEach(function(cert) {
+                html += `<li>${cert}</li>`;
+            });
+            html += `</ul>`;
+
+            document.getElementById("resume-container").innerHTML = html;
+        });
+    </script>
+</body>
+</html>
